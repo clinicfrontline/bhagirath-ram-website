@@ -1,26 +1,171 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/*  Bhagirath Ram — dark, cinematic design system                      */
+/* ------------------------------------------------------------------ */
+@theme {
+  /* surfaces */
+  --color-ink: #0b0c0e; /* base background */
+  --color-ink-2: #101216; /* elevated section */
+  --color-ink-3: #16191f; /* cards */
+  --color-line: rgba(255, 255, 255, 0.09);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+
+  /* text */
+  --color-bone: #edeae3; /* headings */
+  --color-fog: #a3a9b4; /* body */
+  --color-fog-dim: #767c88; /* captions */
+
+  /* brand */
+  --color-gold: #c9a227;
+  --color-gold-light: #e6c877;
+  --color-gold-deep: #a07d1c;
+  --color-steel: #7ca3c4;
+  --color-steel-deep: #37506a;
+
+  --font-display: var(--font-display-face), "Sora", sans-serif;
+  --font-sans: var(--font-sans-face), "Inter", system-ui, sans-serif;
+
+  --shadow-lift: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
+
+  --ease-out-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-fog);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: #000;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-bone);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-weight: 600;
+}
+
+/* thin custom scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0b0c0e; }
+::-webkit-scrollbar-thumb { background: #26292f; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #34383f; }
+
+/* ------------------------------------------------------------------ */
+/*  Reusable classes                                                   */
+/* ------------------------------------------------------------------ */
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold-light);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-gold), transparent);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(100deg, #f2dea3 0%, var(--color-gold) 55%, #8a6a17 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-line-strong), transparent);
+  }
+
+  .card {
+    background: linear-gradient(180deg, var(--color-ink-3), #101318);
+    border: 1px solid var(--color-line);
+    border-radius: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    padding: 0.9rem 1.6rem;
+    border-radius: 0.6rem;
+    transition: transform 0.3s var(--ease-out-cinematic),
+      background-color 0.3s, color 0.3s, border-color 0.3s;
+    will-change: transform;
+  }
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn-gold {
+    background: linear-gradient(180deg, var(--color-gold-light), var(--color-gold));
+    color: #1a1401;
+    box-shadow: 0 10px 30px -12px rgba(201, 162, 39, 0.6);
+  }
+  .btn-ghost {
+    border: 1px solid var(--color-line-strong);
+    color: var(--color-bone);
+  }
+  .btn-ghost:hover { border-color: var(--color-gold); color: var(--color-gold-light); }
+}
+
+/* grain + vignette helpers */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* blueprint grid backdrop */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(124, 163, 196, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124, 163, 196, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }

@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bhagirath Ram — website
 
-## Getting Started
+A modern, dark & cinematic multi-page marketing site for **Bhagirath Ram (Regd.)**, a
+Delhi-based construction firm established **1963**. Built with Next.js (App Router),
+Tailwind CSS v4 and Framer Motion.
 
-First, run the development server:
+> **Rebrand note:** the site currently uses the name "Bhagirath Ram". A new brand name +
+> domain will replace it later. All copy, the wordmark and metadata read from
+> `src/lib/site.ts`, so a rename is a one-file change. Verified-available `.com`
+> candidates researched during the build: `aarohanbuild.com`, `anvayainfra.com`,
+> `meruinfra.com`, `setubuild.com`.
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build && npm run start   # production
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where to edit content — `src/lib/site.ts`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Everything (facts, stats, services, projects, research figures, nav, contact) lives in
+one file. **Fill these real values before launch** — they are marked `// TODO: real value`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `contact.phone`, `contact.phoneHref`, `contact.whatsapp` (digits only, e.g. `9198…`)
+- `contact.email`
 
-## Learn More
+## Pages
 
-To learn more about Next.js, take a look at the following resources:
+| Route | What it is |
+|-------|------------|
+| `/` | Full-screen looping **video hero** (no text) → legacy + stats → services → projects → research teaser → credentials → CTA |
+| `/about` | Heritage story, values, organisation structure |
+| `/services` | The four verticals (civil/infra, institutional, commercial/residential, turnkey) |
+| `/projects` | Gallery of real projects (photos extracted from the profile PDF) |
+| `/research` | Flagship data-driven page on the **patent-pending** low-cement concrete R&D |
+| `/contact` | Call / WhatsApp CTAs, office address, map |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Assets
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Hero video:** `public/hero/blueprint.mp4` (muted, looped, `object-cover`).
+- **Real project photos:** `public/projects/*.jpg` — extracted & normalised from the
+  profile PDF via `scripts/extract-pdf-images.mjs` + `scripts/process-images.mjs`.
+- **AI atmospherics:** `public/generated/*.jpg` — generated with **KIE AI (nano-banana-2)**
+  via `scripts/generate-images.mjs` (reads `KIE_API_KEY` from `.env`).
 
-## Deploy on Vercel
+Regenerate AI images:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+node scripts/generate-images.mjs               # all
+node scripts/generate-images.mjs concrete-pour # one slug
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`.env` holds `KIE_API_KEY` and is git-ignored. Original source files (video, PDF, raw
+extracted images) are kept in `_source/` and the scratchpad, outside the served bundle.
+
+## Design system
+
+Dark cinematic theme defined in `src/app/globals.css` (`@theme` tokens): near-black
+surfaces, warm-gold accent (`#c9a227`), steel-blue secondary; Sora (display) + Inter
+(body), self-hosted via `next/font`. Reusable classes: `.wrap`, `.eyebrow`, `.card`,
+`.btn`/`.btn-gold`/`.btn-ghost`, `.text-gradient-gold`, `.blueprint-grid`. Motion respects
+`prefers-reduced-motion`.
