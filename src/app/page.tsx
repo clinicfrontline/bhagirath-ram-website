@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, ShieldCheck, Leaf } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Leaf } from "lucide-react";
 import { VideoHero } from "@/components/video-hero";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
@@ -189,28 +189,6 @@ export default function HomePage() {
 
       {/* ---- Clients ------------------------------------------------- */}
       <ClientsStrip />
-
-      {/* ---- Trust / credentials ------------------------------------- */}
-      <section className="py-24 sm:py-28">
-        <div className="wrap">
-          <Reveal>
-            <div className="flex items-center gap-3 text-sm font-medium text-fog">
-              <ShieldCheck className="h-5 w-5 text-gold" />
-              A fully registered, statutory-compliant partnership firm
-            </div>
-          </Reveal>
-          <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3 lg:grid-cols-6">
-            {site.credentials.map((c, i) => (
-              <Reveal key={c.label} i={i} className="bg-ink p-6">
-                <div className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-fog-dim">
-                  {c.label}
-                </div>
-                <div className="mt-2 text-sm font-medium text-bone">{c.value}</div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <CTA />
     </>

@@ -56,11 +56,7 @@ export function Footer() {
       <div className="border-t border-line">
         <div className="wrap flex flex-col items-center justify-between gap-3 py-6 text-xs text-fog-dim sm:flex-row">
           <p>© {new Date().getFullYear()} {site.legalName}. All rights reserved.</p>
-          <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
-            <span>GSTIN 07AACFB6497L1ZZ</span>
-            <span className="text-line-strong">·</span>
-            <span>Registered Partnership Firm</span>
-          </p>
+          <p>Registered Partnership Firm</p>
         </div>
       </div>
     </footer>

@@ -28,7 +28,7 @@ export function VideoHero() {
         playsInline
         preload="auto"
       >
-        <source src="/hero/blueprint.mp4" type="video/mp4" />
+        <source src="/hero/showreel.mp4" type="video/mp4" />
       </motion.video>
 
       {/* cinematic grading: darken edges, keep centre readable */}

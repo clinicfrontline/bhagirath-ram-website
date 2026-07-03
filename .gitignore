@@ -50,3 +50,9 @@ AGENTS.md
 
 # never commit source PDFs (contain sensitive PAN/GST/ID scans)
 *.pdf
+
+# raw source assets dropped in the project root — processed copies live in public/;
+# "unwanted part.png" is a screenshot of sensitive GST/PAN/ID data — keep all local only
+/logo re.png
+/video re.mp4
+/unwanted part.png

@@ -108,20 +108,6 @@ export default function ContactPage() {
             </div>
           </Reveal>
         </div>
-
-        {/* credentials */}
-        <div className="wrap mt-8">
-          <Reveal>
-            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3 lg:grid-cols-6">
-              {site.credentials.map((c) => (
-                <div key={c.label} className="bg-ink p-5">
-                  <div className="text-[0.66rem] font-semibold uppercase tracking-[0.16em] text-fog-dim">{c.label}</div>
-                  <div className="mt-1.5 text-sm font-medium text-bone">{c.value}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
       </section>
     </>
   );

@@ -1,25 +1,22 @@
+import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
 
 /**
- * Typographic wordmark (no logo file exists for the firm yet).
- * A minimal "BR" monogram in a surveyor's-mark frame + the name set in the display face.
+ * Brand lockup: the firm's building mark (glowing skyline in a chevron)
+ * next to the name set in the display face.
  */
 export function Logo({ compact = false }: { compact?: boolean }) {
   return (
     <Link href="/" className="group flex items-center gap-3" aria-label={`${site.name} — home`}>
-      <span className="relative grid h-10 w-10 place-items-center rounded-md border border-line-strong bg-ink-3 transition-colors group-hover:border-gold">
-        <svg viewBox="0 0 40 40" className="h-6 w-6" aria-hidden>
-          <path d="M8 30 L20 8 L32 30" fill="none" stroke="url(#brg)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-          <line x1="12.5" y1="22" x2="27.5" y2="22" stroke="url(#brg)" strokeWidth="2.2" strokeLinecap="round" />
-          <defs>
-            <linearGradient id="brg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#e6c877" />
-              <stop offset="1" stopColor="#a07d1c" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </span>
+      <Image
+        src="/logo-mark.png"
+        alt={`${site.name} logo`}
+        width={44}
+        height={44}
+        priority
+        className="h-11 w-11 object-contain transition-transform duration-500 group-hover:scale-105"
+      />
       {!compact && (
         <span className="flex flex-col leading-none">
           <span className="font-display text-[0.98rem] font-bold tracking-[0.16em] text-bone">

@@ -25,16 +25,6 @@ export const site = {
     addressLines: ["B-2/52, Paschim Vihar", "West Delhi, Delhi – 110063"],
     mapsQuery: "B-2/52, Paschim Vihar, West Delhi, Delhi 110063",
   },
-
-  // ---- credentials (all documented in the profile) --------------------
-  credentials: [
-    { label: "Firm type", value: "Registered Partnership Firm" },
-    { label: "GSTIN", value: "07AACFB6497L1ZZ" },
-    { label: "PAN", value: "AACFB6497L" },
-    { label: "EPFO Code", value: "DLCPM1666725000" },
-    { label: "ESIC Code", value: "22001240680000099" },
-    { label: "Delhi Shops & Estd.", value: "Reg. 2021122672" },
-  ],
 } as const;
 
 // ---- headline stats ---------------------------------------------------
