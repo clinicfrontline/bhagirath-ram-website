@@ -149,7 +149,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTA title="Build with a firm that's still here in 2063." intro="Six decades in, we're still building for the long term. Bring us your project and hold us to that standard." />
+      <CTA title="Build with a firm that's been here since 1963." intro="Six decades in, we're still building for the long term. Bring us your project and hold us to that standard." />
     </>
   );
 }

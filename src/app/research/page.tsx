@@ -4,6 +4,7 @@ import { Leaf, TrendingDown, IndianRupee, Gauge, Sprout, ArrowDown } from "lucid
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/reveal";
 import { CementComparison, VolumeScale } from "@/components/research-viz";
+import { ImageDivider } from "@/components/image-divider";
 import { CTA } from "@/components/cta";
 import { research } from "@/lib/site";
 
@@ -59,12 +60,25 @@ export default function ResearchPage() {
                 </Reveal>
               ))}
             </div>
+            <Reveal i={4}>
+              <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-2xl border border-line">
+                <Image src="/generated/concrete-pour.jpg" alt="Concrete being poured on a small site" fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
+              </div>
+            </Reveal>
           </div>
           <Reveal i={1}>
             <VolumeScale />
           </Reveal>
         </div>
       </section>
+
+      {/* divider */}
+      <ImageDivider
+        image="/generated/dusk-skyline.jpg"
+        quote="The firm that has built for sixty years is now building the future of concrete itself."
+        height="h-[50vh]"
+      />
 
       {/* insight */}
       <section className="border-y border-line bg-ink-2 py-24 sm:py-28">
