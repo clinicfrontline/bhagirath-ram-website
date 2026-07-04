@@ -60,7 +60,7 @@ export default function ResearchPage() {
                 </Reveal>
               ))}
             </div>
-            <Reveal i={4}>
+            <Reveal i={4} className="lg:hidden">
               <div className="relative mt-8 aspect-[16/10] overflow-hidden rounded-2xl border border-line">
                 <Image src="/generated/concrete-pour.jpg" alt="Concrete being poured on a small site" fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
